@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button target-key="受监听按钮">监听按钮</button>
+    <button>不监听</button>
+    <button onclick="handleReject()">promise.reject</button>
+    <button id="btn">pushState</button>
+    <button onclick="handleHashChange()">hashchange</button>
+  </body>
+  <script src="./dist/index.js"></script>
+  <script>
+    new Tracker({
+      requestUrl: "http://locathost:3000/tracker",
+      historyTracker: true,
+      hashTracker: true,
+      domTracker: true,
+      jsError: true,
+    });
+
+    function handleReject() {
+      Promise.reject("11122");
+    }
+    function handleHashChange() {
+      location.hash = "#/abc";
+    }
+    btn.onclick = function () {
+      history.pushState({}, "", "/apple");
+    };
+  </script>
+</html>
